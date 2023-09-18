@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="calculator">
+    <div class="expression-display">
+      <p id="expression"></p>
+    </div>
+    <table class="buttons">
+      <tr class="variables">
+        <td class="variable"><button onclick="insertCharacter('(')">(</button></td>
+        <td class="variable"><button></button></td>
+        <td class="variable"><button onclick="insertCharacter(')')">)</button></td>
+      </tr>
+      <tr class="variables">
+        <td class="variable"><button onclick="insertCharacter('P')">P</button></td>
+        <td class="variable"><button onclick="insertCharacter('Q')">Q</button></td>
+        <td class="variable"><button onclick="insertCharacter('R')">R</button></td>
+      </tr>
+      <tr class="operators">
+        <td class="operator"><button onclick="insertCharacter('∧')">∧</button></td>
+        <td class="operator"><button onclick="insertCharacter('∨')">∨</button></td>
+        <td class="operator"><button onclick="insertCharacter('⊕')">⊕</button></td>
+      </tr>
+      <tr class="controls">
+        <td class="control" colspan="2"><button style="width: 160px;" onclick="calculateTruthTable()">Gerar</button></td>
+        <td class="control"><button onclick="removeCharacter()"><</button></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div class="table-box">
+    <h2>Tabela Verdade</h2>
+    <table id="truth-table">
+    </table>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
