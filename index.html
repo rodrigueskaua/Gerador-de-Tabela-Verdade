@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -7,33 +7,22 @@
   <title>Calculadora</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <div class="calculator">
     <div class="expression-display">
       <p id="expression"></p>
     </div>
-    <table class="buttons">
-      <tr class="variables">
-        <td class="variable"><button onclick="insertCharacter('(')">(</button></td>
-        <td class="variable"><button></button></td>
-        <td class="variable"><button onclick="insertCharacter(')')">)</button></td>
-      </tr>
-      <tr class="variables">
-        <td class="variable"><button onclick="insertCharacter('P')">P</button></td>
-        <td class="variable"><button onclick="insertCharacter('Q')">Q</button></td>
-        <td class="variable"><button onclick="insertCharacter('R')">R</button></td>
-      </tr>
-      <tr class="operators">
-        <td class="operator"><button onclick="insertCharacter('∧')">∧</button></td>
-        <td class="operator"><button onclick="insertCharacter('∨')">∨</button></td>
-        <td class="operator"><button onclick="insertCharacter('⊕')">⊕</button></td>
-      </tr>
-      <tr class="controls">
-        <td class="control" colspan="2"><button style="width: 160px;" onclick="calculateTruthTable()">Gerar</button></td>
-        <td class="control"><button onclick="removeCharacter()"><</button></td>
-      </tr>
-    </table>
+    <div class="buttons">
+      <button class="variables" onclick="insertCharacter('P')">P</button>
+      <button class="variables" onclick="insertCharacter('Q')">Q</button>
+      <button class="variables" onclick="insertCharacter('R')">R</button>
+      <button class="operators" onclick="insertCharacter('∧')">∧</button>
+      <button class="operators" onclick="insertCharacter('∨')">∨</button>
+      <button class="operators" onclick="insertCharacter('⊕')">⊕</button>
+      <button class="variables" onclick="insertCharacter('(')">(</button>
+      <button class="variables" onclick="insertCharacter(')')">)</button>
+      <button class="controls" onclick="removeCharacter()">⌫</button>
+    </div>
   </div>
   
   <div class="table-box">
@@ -43,5 +32,4 @@
   </div>
   <script src="script.js"></script>
 </body>
-
 </html>

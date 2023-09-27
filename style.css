@@ -8,109 +8,156 @@
 }
 
 body {
-  background: linear-gradient(to right, #485563, #29323c);
+  border-radius: 20px;
+  background-image: url('background/background.png'); 
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  margin: 0;
+  margin: 20px 0px;
 }
 
 .calculator {
+  max-width: 350px;
+  min-height: 450px;
+  width: 95%;
   display: flex;
   flex-direction: column;
-  background: #2D2A37;
-  border-radius: 15px;
-  padding: 20px;
+  align-items: center;
+  justify-content: space-around;
+  padding: 35px 45px;
   text-align: center;
-  width: 80%;
-  max-width: 400px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 35px;
+  background: linear-gradient(45deg, #23242A, #1A1B20);
+  transition: transform 0.2s ease-in-out;
+}
+.calculator:hover {
+  transform: scale(1.02);
 }
 
 .expression-display {
   width: 100%;
   height: 50px;
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 10px;
+  background-color: transparent;
+  padding: 35px 10px;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 15px;
+  background: #3D3F4A;
+  overflow-y: hidden; 
+  overflow-x: auto;
+  position: relative; 
 }
 
 .expression-display #expression {
+  width: 100%;
   font-size: 26px;
-  color: #000;
+  color: #DEE1EF;
   font-weight: 400;
+  text-align: center;
+  padding: 0px 20px;
   letter-spacing: 4px;
 }
 
-.variable button,
-.operator button,
-.control button {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%);
-  box-shadow: 0px 2px 3px 0px rgba(255, 255, 255, 0.06) inset, 0px 0px 2px 0px rgba(0, 0, 0, 0.29),
-    0px 2px 4px 0px rgba(0, 0, 0, 0.26), 0px 4px 6px 0px rgba(0, 0, 0, 0.10), 0px 7px 7px 0px rgba(0, 0, 0, 0.04),
-    0px 11px 7px 0px rgba(0, 0, 0, 0.01);
-  width: 75px;
-  height: 75px;
-  font-size: 25px;
-  cursor: pointer;
-  margin: 5px;
-  background-color: #2D2A37;
-  border: none;
-  color: #fff;
-  border-radius: 50%;
+.expression-display::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-.variable button:hover,
-.operator button:hover,
-.control button:hover {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
-  box-shadow: 0px 2px 3px 0px rgba(255, 255, 255, 0.06) inset, 0px 0px 2px 0px rgba(0, 0, 0, 0.29),
-    0px 2px 4px 0px rgba(0, 0, 0, 0.26), 0px 4px 6px 0px rgba(0, 0, 0, 0.10), 0px 7px 7px 0px rgba(0, 0, 0, 0.04),
-    0px 11px 7px 0px rgba(0, 0, 0, 0.01);
+.expression-display::-webkit-scrollbar-thumb {
+  background: #5A5D6C; 
+  border-radius: 10px;
+}
+
+.expression-display::-webkit-scrollbar-thumb:hover {
+  background: #7C808F;
+}
+
+.buttons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.variables,
+.operators,
+.controls {
+  width: 100%; 
+  height: 75px;
+  border-radius: 33px;
+  font-size: 25px;
+  cursor: pointer;
+  border: none;
+  color: #DEE1EF;
+}
+
+.variables,
+.operators {
+  background: #5A5D6C;
+}
+
+.controls {
+  background: #3D3F4A;
+}
+
+.variables:hover,
+.operators:hover,
+.controls:hover {
+  transition: transform 0.2s ease-in-out;
+  background-color: #454854;
+  transform: scale(1.04);
 }
 
 .table-box {
-  width: 100%;
-  max-width: 400px;
-  background-color: #fff;
-  margin-top: 20px;
-  border-radius: 15px;
+  min-width: 350px;
+  background-color: #23242A;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 35px;
   padding: 20px;
   text-align: center;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
   overflow: auto;
+}
+
+.table-box h2 {
+  color: #DEE1EF;
+  margin-bottom: 20px;
 }
 
 #truth-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
 }
 
 #truth-table th,
 #truth-table td {
-  border: 1px solid #ccc;
+  border: 1px solid #989595;
   padding: 8px;
   text-align: center;
+  color: #ffffff;
 }
 
 #truth-table th {
-  background-color: #f2f2f2;
+  letter-spacing: 4px;
   font-weight: bold;
 }
 
 #truth-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #5A5D6C; 
 }
 
 #truth-table tr:nth-child(odd) {
-  background-color: #fff;
+  background-color: #464851;
 }
 
 #truth-table td {

@@ -1,5 +1,5 @@
 let currentPreposition = "";
-const regex = /[PQRS]/g;
+const regex = /[PQR]/g;
 const parenRegex = /\(([^)]+)\)/g;
 
 const visualToLogical = {
@@ -11,11 +11,13 @@ const visualToLogical = {
 function insertCharacter(char) {
   currentPreposition += char;
   updatePrepositionOnPage();
+  calculateTruthTable();
 }
 
 function removeCharacter() {
   currentPreposition = currentPreposition.slice(0, -1);
   updatePrepositionOnPage();
+  calculateTruthTable();
 }
 
 function calculatePreposition(preposition, values) {
@@ -37,12 +39,12 @@ function generateTableRow(values, preposition, result) {
       const subResult = calculatePreposition(subPrep.slice(1, -1), values);
       columns.push(`<td>${subResult ? 'V' : 'F'}</td>`);
     }
-  }
-  
+  };
   columns.push(`<td>${result ? 'V' : 'F'}</td>`);
 
   return `<tr>${columns.join('')}</tr>`;
 }
+
 function generateTruthTable(preposition) {
   const variablesSet = new Set(preposition.match(regex) || []);
   const variables = Array.from(variablesSet);
@@ -53,7 +55,7 @@ function generateTruthTable(preposition) {
   for (let i = 0; i < Math.pow(2, variables.length); i++) {
     const variableValues = calculateVariableValues(i, variables.length);
     const result = calculatePreposition(preposition, variableValues);
-    const row = generateTableRow(variableValues, preposition, result); // Passa a preposição e o resultado
+    const row = generateTableRow(variableValues, preposition, result);
     combinations.push(row);
   }
 
@@ -74,7 +76,6 @@ function calculateVariableValues(index, numberOfVariables) {
   return values;
 }
 
-
 function generateTableHeader(variables, preposition) {
   const variableColumns = variables.map(variable => `<th>${variable}</th>`);
   
@@ -85,27 +86,35 @@ function generateTableHeader(variables, preposition) {
       variableColumns.push(`<th>${subPrep}</th>`);
     }
   }
-  
-  
   variableColumns.push(`<th>${preposition}</th>`);
-   
 
   return `<tr>${variableColumns.join('')}</tr>`;
+}
+
+function isValidPreposition(preposition) {
+  const regex = /^(\(?[PQR]+[∧∨⊕]\(?.*\)?)+[PQR]+\)?$/;
+
+  return regex.test(preposition);
 }
 
 function calculateTruthTable() {
   const prepositionRead = currentPreposition;
   if (!prepositionRead) {
-    alert("A preposição está vazia.");
+    document.getElementById('truth-table').innerHTML = '';
     return;
   }
-  
+
+  if (!isValidPreposition(prepositionRead)) {
+    return;
+  }
+
   try {
     const truthTable = generateTruthTable(prepositionRead);
     document.getElementById('truth-table').innerHTML = truthTable;
   } catch (error) {
-    alert("Preposição inválida.");
-    console.error(error)
+    if (!(error instanceof ReferenceError) && !(error instanceof SyntaxError)) {
+      console.error(error);
+    }
   }
 }
 
@@ -113,12 +122,3 @@ function updatePrepositionOnPage() {
   document.getElementById('expression').textContent = currentPreposition;
 }
 
-// Exemplo de uso
-insertCharacter('(');
-insertCharacter('P');
-insertCharacter('∨');
-insertCharacter('Q');
-insertCharacter(')');
-insertCharacter('∨');
-insertCharacter('R');
-calculateTruthTable();
